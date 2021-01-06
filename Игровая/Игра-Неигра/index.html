@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <canvas id="canvas" width="400" height="400" style="border: solid;"></canvas>
+    <script>
+    var convas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = "rgba(22, 22, 21, 0.9)";
+    ctx.fillRect(0, 0, 1000, 1000);
+
+    ctx.fillStyle = "rgb(54, 20, 1)";
+    ctx.fillRect (180, 100, 25, 200  );
+
+    ctx.fillStyle = "rgba(90, 31, 0, 1)";
+    ctx.fillRect (85, 290, 215, 38);
+
+    ctx.fillStyle = "rgba(97, 31, 0, 1)";
+    ctx.fillRect (100, 310, 185, 30);
+
+    ctx.fillStyle = "rgba(81, 31, 0, 1)";
+    ctx.fillRect (60, 290, 260, 29);
+
+    ctx.fillStyle = "rgba(87, 31, 0, 1)";
+    ctx.fillRect (115, 300, 160, 40);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.99)";
+    ctx.beginPath();
+    ctx.moveTo(125, 170);
+    ctx.lineTo(195,205);
+    ctx.lineTo(195,80);
+    ctx.fill()
+    
+    ctx.fillStyle = "rgba(0, 61, 169, 0.5)";
+    ctx.fillRect (0, 325, 400, 200);
+
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.fillRect (80, 320, 225, 10);
+ 
+    ctx.fillStyle = "rgba(212, 226, 62)";
+    ctx.beginPath();
+    ctx.moveTo(50,50);
+    ctx.lineTo(60,90);
+    ctx.lineTo(90,90);
+    ctx.lineTo(60,100);
+    ctx.lineTo(65,130);
+    ctx.lineTo(50,100);
+    ctx.lineTo(35,130);
+    ctx.lineTo(40,100);
+    ctx.lineTo(10,90);
+    ctx.lineTo(40,90);
+    ctx.fill()
+
+    ctx.fillStyle = "rgba(252, 252, 223)";
+    ctx.beginPath();
+    ctx.arc(275, 265, 25, 0, Math.PI * 2 );
+    ctx.fill();
+
+    ctx.fillStyle = "rgb(255, 246, 201)";
+    ctx.beginPath();
+    ctx.arc(275, 220, 22, 0, Math.PI * 2 );
+    ctx.fill();
+
+    ctx.fillStyle = "rgb(255, 246, 182)";
+    ctx.beginPath();
+    ctx.arc(275, 180, 20, 0, Math.PI * 2 );
+    ctx.fill();
+
+    ctx.fillStyle = "rgb(0, 1, 0)";
+    ctx.beginPath();
+    ctx.arc(265, 175, 5, 0, Math.PI * 2 );
+    ctx.fill();
+
+    ctx.fillStyle = "rgb(0, 1, 0)";
+    ctx.beginPath();
+    ctx.arc(285, 175, 5, 0, Math.PI * 2 );
+    ctx.fill();
+
+    ctx.fillStyle = "rgb(204, 98, 0)";
+    ctx.beginPath();
+    ctx.moveTo(270,176);
+    ctx.lineTo(275,170);
+    ctx.lineTo(260,180);
+    ctx.fill();
+
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

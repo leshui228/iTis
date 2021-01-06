@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    canvas {
+      border: 1px solid rgb(180, 115, 9);
+    }
+  </style>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <canvas id="canvas" width="630" height="630"></canvas>
+  <script>
+    function rand(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+    }
+    const ctx = canvas.getContext('2d');
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    const size = 30;
+    const count_food = 5;
+
+    const img_puke = new Image();
+    img_puke.src = "Puke.png";
+
+    const img_fruit = new Image();
+    img_fruit.src = 'Jratva.png';
+
+    const char = {
+      x: [],
+      y: [],
+      move: 'up', // ЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЭЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙ
+      change_move: false
+    }
+
+    char.x[0] = 300;
+    char.y[0] = 570;
+
+    
+
+  //ИГРОВОЕ ПОЛЕ
+
+    function step() {
+    for (i = 0; i < h / size; i++) {
+      for (j = 0; j < w / size; j++) {
+        if (j % 2 + i % 2 == 1) {
+          ctx.fillStyle = 'rgba(39,0,34,255)';
+          ctx.fillRect(j * size, i * size, size, size);
+        }
+        else {
+          ctx.fillStyle = 'rgba(0,57,68,255)';
+          ctx.fillRect(j * size, i * size, size, size);
+        }
+      }
+    }
+   
+    ctx.drawImage(img_puke, char.x,char.y,size,size)
+
+
+    ctx.fillStyle = "rgba(9,0,0,255)";
+    ctx.fillRect (0, 0, size, 630);
+
+    ctx.fillStyle = "rgba(9,0,0,255)";
+    ctx.fillRect (0, 0, 630, size);
+
+    ctx.fillStyle = "rgba(9,0,0,255)";
+    ctx.fillRect (0, 600, 630, 630);
+
+    ctx.fillStyle = "rgba(9,0,0,255)";
+    ctx.fillRect (600, 0, 630, 630);
+
+    ctx.fillStyle = "rgba(9,0,0,255)";
+    ctx.fillRect (210, 510, size, 90);
+
+    ctx.fillStyle = "rgba(9,0,0,255)";
+    ctx.fillRect (390, 510, size, 90);
+
+    ctx.fillStyle = "rgba(9,0,0,255)";
+    ctx.fillRect (360, 510, size, 30);
+
+    ctx.fillStyle = "rgba(9,0,0,255)";
+    ctx.fillRect (240, 510, size, 30);
+
+
+    //ПЕРЕДВИЖЕНИЕ 
+    if (char.move == 'left') char.x[0] -= size;
+    if (char.move == 'right') char.x[0] += size;
+    if (char.move == 'up') char.y[0] -= size;
+    if (char.move == 'down') char.y[0] += size;
+    
+
+    char.change_move = false;   //разрешения изменять направление
+
+    setTimeout(() => {
+      requestAnimationFrame(step);
+    }, 240);
+    //СТЕНКИ
+    if (char.x[0] == w) char.x[0] = 0;
+    if (char.x[0] == 0 - size) char.x[0] = w - size;
+    if (char.y[0] == h) char.y[0] = 0;
+    if (char.y[0] == 0 - size) char.y[0] = h - size;
+       }
+
+    step();
+    
+    //ОБРАБОТКА НАЖАТИЙ
+    document.addEventListener("keydown", e => {
+      if (!char.change_move) {
+        if ((e.key == "ArrowLeft" || e.key == "a" || e.key == "ф") && char.move != 'right') char.move = "left";
+        if ((e.key == "ArrowRight" || e.key == "d" || e.key == "в") && char.move != 'left') char.move = "right";
+        if ((e.key == "ArrowDown" || e.key == "s" || e.key == "ы") && char.move != 'up') char.move = "down";
+        if ((e.key == "ArrowUp" || e.key == "w" || e.key == "ц") && char.move != 'down') char.move = "up";
+        char.change_move = true;
+      }
+    });
+  </script>
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

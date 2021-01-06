@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            border: 1px solid rgb(180, 115, 9);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <script>
+        //ФУНКЦИЯ РАНДОМА
+        function rand(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+        }
+        //ПЕРЕМЕННЫЕ
+        const ctx = canvas.getContext('2d');
+        const w = canvas.clientWidth;
+        const h = canvas.clientHeight;
+        const size = 20; //размер клеток
+        const count_food = 5;//сколько еды
+
+        //ИЗОБРАЖЕНИЯ
+        const img_fruit = new Image();
+        img_fruit.src = 'Безымянный.png';
+
+        const img_head = new Image();
+        img_head.src = 'Serdceeed.png';
+
+        //ПЕРСОНАЖ
+        const char = {
+            x:[],
+            y:[],
+            move: 'right',
+            change_move: false //что бы избежать повторной смены направления
+        }
+        char.x[0] = 0;
+        char.y[0] = 0;
+        //ЕДА
+        class FOOD {
+            x;
+            y;
+            constructor(){
+                this.change();
+            }
+            change(){
+                let r = rand(0, (w-size)/size);
+                this.x = r*size;
+                r = rand(0, (h-size)/size);
+                this.y = r*size;
+            }
+        }
+        //генерация еды
+        const food = [];
+        for(i=0;i<count_food;i++)
+            food[i] = new FOOD();
+
+        //НАЧАЛО ИГРЫ
+        function step(){
+            //ИГРОВОЕ ПОЛЕ
+            for(i=0; i<h/size; i++){
+                for(j=0; j<w/size;j++){
+                    if(j%2 + i%2 == 1){
+                        ctx.fillStyle = 'rgba(3, 68, 17, 0.6)';
+                        ctx.fillRect(j*size,i*size,size,size); 
+                    }
+                    else{
+                        ctx.fillStyle = 'rgba(30, 88, 17, 0.6)';
+                        ctx.fillRect(j*size,i*size,size,size); 
+                    }
+                }
+            }
+
+            //ЗМЕЙКА (голова)
+            ctx.fillStyle = 'rgb(130, 0, 0)';
+            ctx.beginPath();
+            ctx.arc(char.x[0]+size/2,char.y[0]+size/2,size/2,0,Math.PI*2)
+            ctx.fill();
+            //хвост
+            ctx.fillStyle = 'rgb(207, 143, 40)';
+            for(i=1;i<char.x.length;i++){
+                ctx.fillRect(char.x[i],char.y[i],size,size)
+            }
+      
+
+            //ЕДА
+            for(i=0; i<food.length; i++){
+                ctx.drawImage(img_fruit, food[i].x,food[i].y,size,size)
+            }
+            
+            //ПОЕДАНИЕ
+            for(i=0; i<food.length; i++){
+                if(char.x[0] == food[i].x && char.y[0] == food[i].y){
+                    food[i].change();
+                    char.x.push(char.x[0]);
+                    char.y.push(char.y[0]);
+                }
+            }
+
+            //ПЕРЕДВИЖЕНИЕ ХВОСТА
+            for(i=char.x.length-1; i>0; i--){
+                char.x[i] = char.x[i-1];
+                char.y[i] = char.y[i-1]; 
+            }
+
+            //ПЕРЕДВИЖЕНИЕ ЗМЕЙКИ
+            if(char.move == 'left')  char.x[0]-=size;
+            if(char.move == 'right') char.x[0]+=size;
+            if(char.move == 'up')    char.y[0]-=size;
+            if(char.move == 'down')  char.y[0]+=size;
+
+            //СМЕРТЬ
+            for(i=1;i<char.x.length;i++){
+                if(char.x[i]== char.x[0] && char.y[i] == char.y[0])
+                    alert('dead');
+            }
+
+            //СТЕНКИ
+            if(char.x[0] == w)      char.x[0] = 0;
+            if(char.x[0] == 0-size) char.x[0] = w-size;
+            if(char.y[0] == h)      char.y[0] = 0;
+            if(char.y[0] == 0-size) char.y[0] = h-size;
+
+            char.change_move = false;   //разрешения изменять направление
+
+            setTimeout(() => {
+                requestAnimationFrame(step);
+            }, 70);
+        }
+
+        step();
+
+        //ОБРАБОТКА НАЖАТИЙ
+        document.addEventListener("keydown", e => {
+            if(!char.change_move){
+                if ((e.key == "ArrowLeft"    || e.key == "a" || e.key == "ф") && char.move != 'right')  char.move = "left";
+                if ((e.key == "ArrowRight"   || e.key == "d" || e.key == "в") && char.move != 'left')   char.move = "right";
+                if ((e.key == "ArrowDown"    || e.key == "s" || e.key == "ы") && char.move != 'up')     char.move = "down";
+                if ((e.key == "ArrowUp"      || e.key == "w" || e.key == "ц") && char.move != 'down')   char.move = "up";
+                char.change_move = true;
+            }
+      });
+    </script>
+</body>
+</html>

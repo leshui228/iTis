@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Death-Buisness</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Oswald|Pacifico|Teko&display=swap');
+    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">  
+</head>
+  <body>
+    <!-- 
+    Шрифты:
+font-family: 'Oswald', sans-serif;
+font-family: 'Open Sans Condensed', sans-serif;
+font-family: 'Teko', sans-serif;
+font-family: 'Pacifico', cursive; 
+-->
+    
+        <h1 class="big">Веселой игры :) </h1> <br> <br>
+        <div class="medium">    
+    <h1 class="big">У вас  <span id="money"></span> <img id="imgge" src="Palkitseminen.png" alt="Долларов"> и  <span id="bitcoin"></span> <img id="imgge" src="apgmb2o8pocppxaouktu.png" alt="Биткоинов">.</h1>
+    <h2>Цена Души Сейчас: <span id="price"></span></h2>
+    <button onclick="buy()" class="btn btn-success"> <i>Купить.</i> </button> <button onclick="sell()" class="btn btn-warning"> <i>Продать.</i> </button>
+    <h6>Предистория+Обучение</h6>
+<button class="btn btn-info btn-rounded" id="btn" onclick="History()"> <i>Сюда</i> </button>
+        
+  <script>
+  let m = 400;
+  let p = 0;
+  let b = 0;
+  
+  function buy() {
+    if (m>=p) {
+        b++;
+        m= m-p;  
+    } 
+  }
+  function sell() {
+      if (b>0) {
+          b= b-b;
+          m= m+p;
+      } 
+  }
+  setInterval(() => {
+    p=Math.round(10 + Math.random()* (425+1) - 10);
+    money.textContent = m;
+    bitcoin.textContent = b;
+    price.textContent = p;
+  }, 400);
+  </script>
+<script>
+ function History() {
+   alert("Добро пожаловать.");
+   alert("Введу вас в курс дела:");
+   alert("Вы - жнец.");
+   alert("Ваша задача - Скупать ДУШИ умерших.");
+   alert("Да - за доллары...");
+   alert("После чего продавать их!");
+   alert("Ваша задача - заработать 10000$");
+   alert("Это все. Удачи!");
+ }
+</script>
+<script>
+if (m>=10000) {
+  alert("Поздравляю!")
+}
+</script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

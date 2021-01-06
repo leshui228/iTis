@@ -1,0 +1,33 @@
+html, body{
+    background-image: url("Fantasy_Black_and_white_Deadpool_110460_.jpg");
+    background-size: cover;
+}
+.big{
+    font-family: 'Oswald', sans-serif;
+}
+.medium{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+.container{
+    text-align: center;
+}
+.btn-warning {
+    width: 200px;
+    height: 100px;
+    font-size: 36px;
+}
+.btn-success {
+    width: 200px;
+    height: 100px;
+    font-size: 36px;
+}
+.btn-info {
+    width: 60px;
+    height: 30px;
+    font-size: 12px;
+}
+#imgge {
+    width: 100px;
+    height: 80px;
+    font-size: 28px;
+}
